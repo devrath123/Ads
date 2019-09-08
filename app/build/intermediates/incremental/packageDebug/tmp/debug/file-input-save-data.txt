@@ -1,0 +1,11 @@
+#Internal package file, do not edit.
+#Wed Sep 04 18:51:44 SAST 2019
+1.base=/Users/A101664/StudioProjects/Ads/app/build/intermediates/transforms/dexMerger/debug/1
+0.baseType=DIRECTORY
+1.baseType=DIRECTORY
+count=2
+1.set=DEX
+0.path=classes.dex
+0.set=DEX
+0.base=/Users/A101664/StudioProjects/Ads/app/build/intermediates/transforms/dexMerger/debug/0
+1.path=classes.dex

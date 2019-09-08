@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.asyncdroid.ads.mvp.view.activity.LoginActivity">
+
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/login_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dimen_30dp"
+        android:layout_marginEnd="@dimen/dimen_30dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/email_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/grey_border_et"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/email_id"
+            android:inputType="textEmailAddress"
+            android:maxLength="@integer/max_length_30"
+            android:maxLines="@integer/max_lines_1"
+            android:padding="@dimen/dimen_15dp"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/dark_gray" />
+
+        <TextView
+            android:id="@+id/email_error_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_5dp"
+            android:layout_marginEnd="@dimen/dimen_5dp"
+            android:maxLines="@integer/max_lines_1"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <EditText
+            android:id="@+id/password_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:background="@drawable/grey_border_et"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:maxLength="@integer/max_length_25"
+            android:maxLines="@integer/max_lines_1"
+            android:padding="@dimen/dimen_15dp"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/dark_gray"
+            android:drawableEnd="@drawable/ic_menu_password_visibility"
+            />
+
+        <TextView
+            android:id="@+id/password_error_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_5dp"
+            android:layout_marginEnd="@dimen/dimen_5dp"
+            android:maxLines="@integer/max_lines_1"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="@dimen/dimen_180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen_40dp"
+            android:padding="@dimen/dimen_10dp"
+            android:background="@drawable/blue_background_btn"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="@dimen/dimen_18sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dimen_30dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/new_to_ads"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/dimen_16sp" />
+
+        <TextView
+            android:id="@+id/register_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/register"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/dimen_16sp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

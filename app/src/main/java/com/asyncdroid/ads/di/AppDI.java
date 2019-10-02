@@ -12,13 +12,14 @@ import com.asyncdroid.ads.di.module.AppModule;
 import com.asyncdroid.ads.di.module.FragmentModule;
 import com.asyncdroid.ads.di.module.NetworkModule;
 import com.asyncdroid.ads.mvp.view.activity.BaseActivity;
+import com.asyncdroid.ads.util.NetworkURL;
 
 public class AppDI {
 
     private static AppComponent getAppComponent(BaseActivity baseActivity){
         return DaggerAppComponent.builder()
                                  .appModule(new AppModule(baseActivity.getApplication()))
-                                 .networkModule(new NetworkModule())
+                                 .networkModule(new NetworkModule(NetworkURL.BASE_URL))
                                  .build();
     }
 
@@ -29,7 +30,7 @@ public class AppDI {
     private static AppComponent getAppComponent(Fragment fragment){
         return DaggerAppComponent.builder()
                 .appModule(new AppModule(fragment.getActivity().getApplication()))
-                .networkModule(new NetworkModule())
+                .networkModule(new NetworkModule(NetworkURL.BASE_URL))
                 .build();
     }
 

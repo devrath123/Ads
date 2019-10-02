@@ -1,27 +1,32 @@
 package com.asyncdroid.ads.mvp.presenter;
 
-import android.text.TextUtils;
+import android.util.Log;
 
 
+import com.asyncdroid.ads.manager.SharedPrefManager;
 import com.asyncdroid.ads.mvp.view.iview.SignUpView;
+import com.asyncdroid.ads.util.APIInterface;
+import com.asyncdroid.ads.util.RequestProperty;
 import com.asyncdroid.ads.util.StringUtil;
 import com.asyncdroid.ads.util.Validator;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.gson.JsonObject;
 
 import javax.inject.Inject;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SignUpPresenter extends BasePresenter<SignUpView> {
 
-    private FirebaseAuth firebaseAuth;
+    private APIInterface apiInterface;
+    private SharedPrefManager sharedPrefManager;
     private SignUpView signUpView;
 
     @Inject
-    SignUpPresenter(FirebaseAuth firebaseAuth) {
-        this.firebaseAuth = firebaseAuth;
+    SignUpPresenter(APIInterface apiInterface, SharedPrefManager sharedPrefManager) {
+        this.apiInterface = apiInterface;
+        this.sharedPrefManager = sharedPrefManager;
     }
 
     @Override
@@ -59,25 +64,26 @@ public class SignUpPresenter extends BasePresenter<SignUpView> {
     }
 
     public void signUp(String email, String password, String displayName) {
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (!task.isSuccessful()) {
-                        signUpView.signUpResult(task);
-                    } else {
-                        updateDisplayName(task, displayName);
-                    }
-                });
-    }
 
-    private void updateDisplayName(Task<AuthResult> signUpTask, String displayName) {
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser != null) {
-            UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(displayName).build();
-            firebaseUser.updateProfile(userProfileChangeRequest)
-                    .addOnCompleteListener(task -> {
-                        signUpView.signUpResult(signUpTask);
-                    });
-        }
+        JsonObject signUpJsonObject = new JsonObject();
+        signUpJsonObject.addProperty(RequestProperty.PROPERTY_NAME, displayName);
+        signUpJsonObject.addProperty(RequestProperty.PROPERTY_EMAIL, email);
+        signUpJsonObject.addProperty(RequestProperty.PROPERTY_PASSWORD, password);
+        signUpJsonObject.addProperty(RequestProperty.PROPERTY_REGISTRATION_TYPE, RequestProperty.REGISTRATION_TYPE_CUSTOM);
+
+        Call<JsonObject> signUpCall = apiInterface.signUp(signUpJsonObject);
+        signUpCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                Log.i("Response", response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.i("Response", "");
+            }
+        });
+
 
     }
 }

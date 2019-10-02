@@ -2,6 +2,7 @@ package com.asyncdroid.ads.di.module;
 
 import android.app.Application;
 
+import com.asyncdroid.ads.manager.SharedPrefManager;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import javax.inject.Singleton;
@@ -28,5 +29,11 @@ public class AppModule {
     @Provides
     FirebaseAnalytics providesFirebaseAnalytics(){
         return FirebaseAnalytics.getInstance(application);
+    }
+
+    @Singleton
+    @Provides
+    SharedPrefManager providesSharedPrefManager(){
+        return new SharedPrefManager(application);
     }
 }

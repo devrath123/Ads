@@ -20,12 +20,8 @@ import com.asyncdroid.ads.di.AppDI;
 import com.asyncdroid.ads.mvp.presenter.SignUpPresenter;
 import com.asyncdroid.ads.mvp.view.iview.SignUpView;
 import com.asyncdroid.ads.util.Util;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -172,22 +168,22 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
     }
 
     @Override
-    public void signUpResult(Task<AuthResult> task) {
+    public void signUpResult() {
         progressBar.setVisibility(View.GONE);
-        if (task.isSuccessful()) {
-            Intent intent = new Intent(this, DashboardActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        } else {
-            try {
-                throw Objects.requireNonNull(task.getException());
-            } catch (FirebaseAuthUserCollisionException existEmail) {
-                setEmailErrorMessage(getResources().getString(R.string.email_exists));
-            } catch (Exception e) {
-                Snackbar.make(sign_up_rl, getString(R.string.problem_with_registration),Snackbar.LENGTH_LONG).show();
-            }
-        }
+//        if (task.isSuccessful()) {
+//            Intent intent = new Intent(this, DashboardActivity.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(intent);
+//        } else {
+//            try {
+//                throw Objects.requireNonNull(task.getException());
+//            } catch (FirebaseAuthUserCollisionException existEmail) {
+//                setEmailErrorMessage(getResources().getString(R.string.email_exists));
+//            } catch (Exception e) {
+//                Snackbar.make(sign_up_rl, getString(R.string.problem_with_registration),Snackbar.LENGTH_LONG).show();
+//            }
+//        }
     }
 
 }

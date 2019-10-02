@@ -1,18 +1,19 @@
 package com.asyncdroid.ads.mvp.presenter;
 
+import com.asyncdroid.ads.manager.SharedPrefManager;
 import com.asyncdroid.ads.mvp.view.iview.SplashView;
-import com.google.firebase.auth.FirebaseAuth;
+import com.asyncdroid.ads.util.SharedPrefConstants;
 
 import javax.inject.Inject;
 
 public class SplashPresenter extends BasePresenter<SplashView> {
 
     private SplashView splashView;
-    private FirebaseAuth firebaseAuth;
+    private SharedPrefManager sharedPrefManager;
 
     @Inject
-    SplashPresenter(FirebaseAuth firebaseAuth) {
-        this.firebaseAuth = firebaseAuth;
+    SplashPresenter(SharedPrefManager sharedPrefManager) {
+        this.sharedPrefManager = sharedPrefManager;
     }
 
     @Override
@@ -20,10 +21,10 @@ public class SplashPresenter extends BasePresenter<SplashView> {
         this.splashView = view;
     }
 
-    public void decideNavigation(){
-        if (firebaseAuth.getCurrentUser() != null){
+    public void decideNavigation() {
+        if (sharedPrefManager.getLong(SharedPrefConstants.USER_ID) > 0) {
             splashView.navigateToDashboard();
-        }else {
+        } else {
             splashView.navigateToLogin();
         }
     }

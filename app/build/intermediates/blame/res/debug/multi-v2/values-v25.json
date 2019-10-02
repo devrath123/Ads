@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/A101664/StudioProjects/Ads/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v25/values-v25.xml",
+            "outputFile": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/5f7c7c78339ccc0dbd6fcd12e06cb5cf/res/values-v25/values-v25.xml",
+                    "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/d9d0ad4266a6548f8e08469119464396/res/values-v25/values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",

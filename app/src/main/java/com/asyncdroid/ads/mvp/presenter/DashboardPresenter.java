@@ -1,18 +1,18 @@
 package com.asyncdroid.ads.mvp.presenter;
 
+import com.asyncdroid.ads.manager.SharedPrefManager;
 import com.asyncdroid.ads.mvp.view.iview.DashboardView;
-import com.google.firebase.auth.FirebaseAuth;
 
 import javax.inject.Inject;
 
 public class DashboardPresenter extends BasePresenter<DashboardView> {
 
     private DashboardView dashboardView;
-    private FirebaseAuth firebaseAuth;
+    private SharedPrefManager sharedPrefManager;
 
     @Inject
-    DashboardPresenter(FirebaseAuth firebaseAuth){
-         this.firebaseAuth = firebaseAuth;
+    DashboardPresenter(SharedPrefManager sharedPrefManager){
+         this.sharedPrefManager = sharedPrefManager;
     }
 
     @Override
@@ -21,11 +21,11 @@ public class DashboardPresenter extends BasePresenter<DashboardView> {
     }
 
     public void getLoggedInUserDetails(){
-        dashboardView.setUserInfo(firebaseAuth.getCurrentUser());
+       // dashboardView.setUserInfo(firebaseAuth.getCurrentUser());
     }
 
     public void logoutUser(){
-        firebaseAuth.signOut();
+       // firebaseAuth.signOut();
         dashboardView.logoutUser();
     }
 }

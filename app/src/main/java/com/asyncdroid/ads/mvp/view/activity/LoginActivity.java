@@ -19,9 +19,7 @@ import com.asyncdroid.ads.di.AppDI;
 import com.asyncdroid.ads.mvp.presenter.LoginPresenter;
 import com.asyncdroid.ads.mvp.view.iview.LoginView;
 import com.asyncdroid.ads.util.Util;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthResult;
 
 import javax.inject.Inject;
 
@@ -148,14 +146,16 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @Override
-    public void loginResult(Task<AuthResult> task) {
+    public void loginSuccess() {
         progress_bar.setVisibility(View.GONE);
-        if (task.isSuccessful()) {
-            startActivity(new Intent(this, DashboardActivity.class));
-            finish();
-        } else {
-            Snackbar.make(login_rl, getResources().getString(R.string.invalid_credentials), Snackbar.LENGTH_LONG).show();
-        }
+        startActivity(new Intent(this, DashboardActivity.class));
+        finish();
+    }
+
+    @Override
+    public void loginFailed(String errorMessage) {
+        progress_bar.setVisibility(View.GONE);
+        Snackbar.make(login_rl, errorMessage, Snackbar.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.register_tv)

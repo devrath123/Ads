@@ -19,8 +19,6 @@ import com.asyncdroid.ads.mvp.view.fragment.PostAdFragment;
 import com.asyncdroid.ads.mvp.view.iview.DashboardView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.auth.FirebaseUser;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -117,9 +115,9 @@ public class DashboardActivity extends BaseActivity
     }
 
     @Override
-    public void setUserInfo(FirebaseUser firebaseUser) {
-        user_name_tv.setText(firebaseUser.getDisplayName());
-        user_email_tv.setText(firebaseUser.getEmail());
+    public void setUserInfo() {
+//        user_name_tv.setText(firebaseUser.getDisplayName());
+//        user_email_tv.setText(firebaseUser.getEmail());
     }
 
     @Override

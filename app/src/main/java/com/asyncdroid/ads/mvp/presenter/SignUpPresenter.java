@@ -39,13 +39,16 @@ public class SignUpPresenter extends BasePresenter<SignUpView> {
         this.signUpView = view;
     }
 
-    public void checkDisplayNameValidation(String displayName) {
-        if (Validator.displayNameValidation(displayName)) {
-            signUpView.displayNameValidated(true);
+    public void checkNameValidation(String name) {
+        signUpView.nameValidated(true);
+        if (Validator.displayNameValidation(name)) {
             signUpView.setDisplayNameErrorMessage(StringUtil.EMPTY);
         } else {
-            signUpView.displayNameValidated(false);
-            signUpView.setDisplayNameErrorMessage(StringUtil.DISPLAY_NAME_STRENGTH);
+            if (name.length() > 0){
+                signUpView.setDisplayNameErrorMessage(StringUtil.NAME_STRENGTH);
+            }else {
+                signUpView.setDisplayNameErrorMessage(StringUtil.ENTER_NAME);
+            }
         }
     }
 
@@ -54,17 +57,24 @@ public class SignUpPresenter extends BasePresenter<SignUpView> {
         if (Validator.emailValidation(email)) {
             signUpView.setEmailErrorMessage(StringUtil.EMPTY);
         } else {
-            signUpView.setEmailErrorMessage(StringUtil.ENTER_VALID_EMAIL);
+            if (email.length() > 0) {
+                signUpView.setEmailErrorMessage(StringUtil.ENTER_VALID_EMAIL);
+            } else {
+                signUpView.setEmailErrorMessage(StringUtil.ENTER_EMAIL);
+            }
         }
     }
 
     public void checkPasswordValidation(String password) {
+        signUpView.passwordValidated(Validator.passwordValidation(password));
         if (Validator.passwordValidation(password)) {
-            signUpView.passwordValidated(true);
             signUpView.setPasswordErrorMessage(StringUtil.EMPTY);
         } else {
-            signUpView.passwordValidated(false);
-            signUpView.setPasswordErrorMessage(StringUtil.PASSWORD_STRENGTH);
+            if (password.length() > 0) {
+                signUpView.setPasswordErrorMessage(StringUtil.PASSWORD_STRENGTH);
+            } else {
+                signUpView.setPasswordErrorMessage(StringUtil.ENTER_PASSWORD);
+            }
         }
     }
 
@@ -101,6 +111,7 @@ public class SignUpPresenter extends BasePresenter<SignUpView> {
             sharedPrefManager.putLong(SharedPrefConstants.USER_ID, signUpResponse.getUser().getUserId());
             sharedPrefManager.putString(SharedPrefConstants.USER_NAME, signUpResponse.getUser().getName());
             sharedPrefManager.putString(SharedPrefConstants.USER_EMAIL, signUpResponse.getUser().getEmail());
+            sharedPrefManager.putString(SharedPrefConstants.USER_REGISTRATION_TYPE, signUpResponse.getUser().getRegistration_type());
         }
     }
 }

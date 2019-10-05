@@ -2,7 +2,7 @@ package com.asyncdroid.ads.mvp.view.iview;
 
 
 public interface SignUpView extends BaseView {
-    void displayNameValidated(boolean validationStatus);
+    void nameValidated(boolean validationStatus);
 
     void emailValidated(boolean validationStatus);
 

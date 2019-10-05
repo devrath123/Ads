@@ -5,4 +5,5 @@ public interface SharedPrefConstants {
     String USER_ID = "UserId";
     String USER_NAME = "UserName";
     String USER_EMAIL = "UserEmail";
+    String USER_REGISTRATION_TYPE = "UserRegistrationType";
 }

@@ -44,8 +44,8 @@ import butterknife.OnTextChanged;
 
 public class SignUpActivity extends BaseActivity implements SignUpView {
 
-    @BindView(R.id.display_name_et)
-    EditText display_name_et;
+    @BindView(R.id.name_et)
+    EditText name_et;
 
     @BindView(R.id.email_et)
     EditText email_et;
@@ -76,7 +76,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
 
     private boolean emailValidationStatus;
     private boolean passwordValidationStatus;
-    private boolean displayNameValidationStatus;
+    private boolean nameValidationStatus;
     private boolean passwordVisible;
 
     private GoogleSignInClient googleSignInClient;
@@ -131,9 +131,9 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
         return R.layout.activity_sign_up;
     }
 
-    @OnTextChanged(R.id.display_name_et)
+    @OnTextChanged(R.id.name_et)
     public void displayNameTextChanged(CharSequence charSequence) {
-        signUpPresenter.checkDisplayNameValidation(charSequence.toString());
+        signUpPresenter.checkNameValidation(charSequence.toString());
     }
 
     @OnTextChanged(R.id.email_et)
@@ -148,23 +148,23 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
 
     @OnClick(R.id.sign_up_btn)
     public void signUpButtonAction() {
-        if (displayNameValidationStatus && emailValidationStatus && passwordValidationStatus) {
+        if (nameValidationStatus && emailValidationStatus && passwordValidationStatus) {
             SignUpRequest signUpRequest = new SignUpRequest(email_et.getText().toString(),
-                    password_et.getText().toString(), display_name_et.getText().toString(),
+                    password_et.getText().toString(), name_et.getText().toString(),
                     RequestProperty.REGISTRATION_TYPE_CUSTOM, StringUtil.EMPTY);
             signUpPresenter.signUp(signUpRequest);
             Util.hideKeyboard(this);
             progressBar.setVisibility(View.VISIBLE);
         }else{
-            signUpPresenter.checkDisplayNameValidation(display_name_et.getText().toString());
+            signUpPresenter.checkNameValidation(name_et.getText().toString());
             signUpPresenter.checkEmailValidation(email_et.getText().toString());
             signUpPresenter.checkPasswordValidation(password_et.getText().toString());
         }
     }
 
     @Override
-    public void displayNameValidated(boolean validationStatus) {
-        this.displayNameValidationStatus = validationStatus;
+    public void nameValidated(boolean validationStatus) {
+        this.nameValidationStatus = validationStatus;
     }
 
     @Override
@@ -199,7 +199,14 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
 
+    @OnClick(R.id.login_tv)
+    public void loginAction(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override

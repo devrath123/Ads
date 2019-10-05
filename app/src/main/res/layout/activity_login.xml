@@ -79,7 +79,6 @@
             android:fontFamily="@font/roboto_medium"
             android:padding="@dimen/dimen_10dp"
             android:text="@string/login"
-            android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"
             android:textSize="@dimen/dimen_18sp" />
@@ -140,7 +139,7 @@
             android:fontFamily="@font/roboto_regular"
             android:text="@string/create_an_account"
             android:textColor="@color/dark_gray"
-            android:textSize="@dimen/dimen_14sp" />
+            android:textSize="@dimen/dimen_12sp" />
 
         <TextView
             android:id="@+id/register_tv"
@@ -149,8 +148,9 @@
             android:layout_marginStart="5dp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/register"
+            android:textAllCaps="true"
             android:textColor="@color/dark_blue"
-            android:textSize="@dimen/dimen_18sp" />
+            android:textSize="@dimen/dimen_16sp" />
 
     </LinearLayout>
 

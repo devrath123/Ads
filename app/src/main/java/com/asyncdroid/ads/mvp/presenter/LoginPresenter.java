@@ -80,6 +80,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             sharedPrefManager.putLong(SharedPrefConstants.USER_ID, loginResponse.getUser().getUserId());
             sharedPrefManager.putString(SharedPrefConstants.USER_NAME, loginResponse.getUser().getName());
             sharedPrefManager.putString(SharedPrefConstants.USER_EMAIL, loginResponse.getUser().getEmail());
+            sharedPrefManager.putString(SharedPrefConstants.USER_REGISTRATION_TYPE, loginResponse.getUser().getRegistration_type());
         }
     }
 
@@ -88,17 +89,24 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         if (Validator.emailValidation(email)) {
             loginView.setEmailErrorMessage(StringUtil.EMPTY);
         } else {
-            loginView.setEmailErrorMessage(StringUtil.ENTER_VALID_EMAIL);
+            if(email.length() > 0) {
+                loginView.setEmailErrorMessage(StringUtil.ENTER_VALID_EMAIL);
+            }else{
+                loginView.setEmailErrorMessage(StringUtil.ENTER_EMAIL);
+            }
         }
     }
 
     public void checkPasswordValidation(String password) {
+        loginView.passwordValidated(Validator.passwordValidation(password));
         if (Validator.passwordValidation(password)) {
-            loginView.passwordValidated(true);
             loginView.setPasswordErrorMessage(StringUtil.EMPTY);
         } else {
-            loginView.passwordValidated(false);
-            loginView.setPasswordErrorMessage(StringUtil.PASSWORD_STRENGTH);
+            if (password.length() > 0) {
+                loginView.setPasswordErrorMessage(StringUtil.PASSWORD_STRENGTH);
+            }else{
+                loginView.setPasswordErrorMessage(StringUtil.ENTER_PASSWORD);
+            }
         }
     }
 }

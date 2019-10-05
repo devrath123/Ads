@@ -5,9 +5,10 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="email_exists">Email Id already exists</string>
-    <string name="display_name">Display Name</string>
+    <string name="name">Name</string>
     <string name="invalid_credentials">Invalid credentials</string>
-    <string name="create_an_account">Create an account?</string>
+    <string name="create_an_account">Create an account ? </string>
+    <string name="already_have_account">Already have an account ? </string>
     <string name="problem_with_registration">Problem with Registration, Try again</string>
 
 

@@ -174,10 +174,13 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @OnClick(R.id.register_tv)
     public void signUpAction() {
-        startActivity(new Intent(this, SignUpActivity.class));
+        Intent intent = new Intent(this, SignUpActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
-    private void googleSignIn(){
+    private void googleSignIn() {
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -186,9 +189,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @OnClick(R.id.google_login_button)
-    public void googleLoginAction(){
+    public void googleLoginAction() {
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, Constants.GOOGLE_LOGIN_REQUEST_CODE);
+    }
+
+    @OnClick(R.id.facebook_login_button)
+    public void facebookLoginAction() {
+
     }
 
     @Override
@@ -199,11 +207,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
             try {
                 Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                 GoogleSignInAccount googleSignInAccount = task.getResult(ApiException.class);
-                if (googleSignInAccount != null){
+                if (googleSignInAccount != null) {
                     loginPresenter.login(googleSignInAccount.getEmail(), StringUtil.EMPTY, googleSignInAccount.getId());
                 }
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

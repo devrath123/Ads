@@ -1072,6 +1072,8 @@ dimen design_textinput_caption_translate_y
 dimen dimen_100dp
 dimen dimen_10dp
 dimen dimen_10sp
+dimen dimen_12sp
+dimen dimen_14sp
 dimen dimen_150dp
 dimen dimen_15dp
 dimen dimen_15sp
@@ -1089,6 +1091,8 @@ dimen dimen_40dp
 dimen dimen_50dp
 dimen dimen_50sp
 dimen dimen_5dp
+dimen dimen_60dp
+dimen dimen_60sp
 dimen dimen_70dp
 dimen disabled_alpha_material_dark
 dimen disabled_alpha_material_light
@@ -1371,6 +1375,7 @@ drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
 drawable blue_background_btn
+drawable blue_border_circle
 drawable blue_border_et
 drawable bottom_navigation_item_color
 drawable btn_checkbox_checked_mtrl
@@ -1420,6 +1425,8 @@ drawable ic_edit_black_24dp
 drawable ic_electronics
 drawable ic_expand_less
 drawable ic_expand_more
+drawable ic_facebook
+drawable ic_google
 drawable ic_job
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
@@ -1613,6 +1620,7 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id facebook_login_button
 id fade
 id fill
 id fill_horizontal
@@ -1625,6 +1633,8 @@ id forever
 id frame_layout
 id ghost_view
 id gone
+id google_login_button
+id google_sign_up_button
 id group_divider
 id groups
 id hideable
@@ -2027,6 +2037,7 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
+string create_an_account
 string default_web_client_id
 string display_name
 string email_exists
@@ -2041,8 +2052,8 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
-string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
+string hyphen
 string icon_content_description
 string invalid_credentials
 string login
@@ -2090,7 +2101,7 @@ string mtrl_picker_toggle_to_text_input_mode
 string mtrl_picker_toggle_to_year_selection
 string navigation_drawer_close
 string navigation_drawer_open
-string new_to_ads
+string or
 string password
 string password_toggle_content_description
 string path_password_eye

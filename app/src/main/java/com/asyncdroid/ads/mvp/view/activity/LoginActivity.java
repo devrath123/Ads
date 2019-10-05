@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -14,11 +15,21 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.asyncdroid.ads.R;
 import com.asyncdroid.ads.di.AppDI;
 import com.asyncdroid.ads.mvp.presenter.LoginPresenter;
 import com.asyncdroid.ads.mvp.view.iview.LoginView;
+import com.asyncdroid.ads.util.Constants;
+import com.asyncdroid.ads.util.StringUtil;
 import com.asyncdroid.ads.util.Util;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
@@ -61,6 +72,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
     boolean passwordValidationStatus;
     boolean passwordVisible;
 
+    private GoogleSignInClient googleSignInClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +83,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
         loginPresenter.bind(this);
 
         setPasswordEyeListener();
+        googleSignIn();
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -116,7 +130,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @OnClick(R.id.login_btn)
     public void loginButtonAction() {
         if (emailValidationStatus && passwordValidationStatus) {
-            loginPresenter.login(email_et.getText().toString(), password_et.getText().toString());
+            loginPresenter.login(email_et.getText().toString(), password_et.getText().toString(), StringUtil.EMPTY);
             Util.hideKeyboard(this);
             progress_bar.setVisibility(View.VISIBLE);
         } else {
@@ -161,5 +175,37 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @OnClick(R.id.register_tv)
     public void signUpAction() {
         startActivity(new Intent(this, SignUpActivity.class));
+    }
+
+    private void googleSignIn(){
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+    }
+
+    @OnClick(R.id.google_login_button)
+    public void googleLoginAction(){
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, Constants.GOOGLE_LOGIN_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == Constants.GOOGLE_LOGIN_REQUEST_CODE) {
+            try {
+                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+                GoogleSignInAccount googleSignInAccount = task.getResult(ApiException.class);
+                if (googleSignInAccount != null){
+                    loginPresenter.login(googleSignInAccount.getEmail(), StringUtil.EMPTY, googleSignInAccount.getId());
+                }
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 }

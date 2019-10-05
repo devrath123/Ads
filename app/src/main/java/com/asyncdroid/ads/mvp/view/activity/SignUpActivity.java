@@ -15,11 +15,23 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.asyncdroid.ads.R;
 import com.asyncdroid.ads.di.AppDI;
+import com.asyncdroid.ads.mvp.model.SignUpRequest;
 import com.asyncdroid.ads.mvp.presenter.SignUpPresenter;
 import com.asyncdroid.ads.mvp.view.iview.SignUpView;
+import com.asyncdroid.ads.util.Constants;
+import com.asyncdroid.ads.util.RequestProperty;
+import com.asyncdroid.ads.util.StringUtil;
 import com.asyncdroid.ads.util.Util;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 
 
@@ -62,11 +74,12 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
     @Inject
     SignUpPresenter signUpPresenter;
 
-    boolean emailValidationStatus;
-    boolean passwordValidationStatus;
-    boolean displayNameValidationStatus;
-    boolean passwordVisible;
+    private boolean emailValidationStatus;
+    private boolean passwordValidationStatus;
+    private boolean displayNameValidationStatus;
+    private boolean passwordVisible;
 
+    private GoogleSignInClient googleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +89,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
         signUpPresenter.bind(this);
 
         setPasswordEyeListener();
+        googleSignIn();
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -104,6 +118,14 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
         });
     }
 
+    private void googleSignIn(){
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+    }
+
     @Override
     int getLayoutId() {
         return R.layout.activity_sign_up;
@@ -127,7 +149,10 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
     @OnClick(R.id.sign_up_btn)
     public void signUpButtonAction() {
         if (displayNameValidationStatus && emailValidationStatus && passwordValidationStatus) {
-            signUpPresenter.signUp(email_et.getText().toString(), password_et.getText().toString(), display_name_et.getText().toString());
+            SignUpRequest signUpRequest = new SignUpRequest(email_et.getText().toString(),
+                    password_et.getText().toString(), display_name_et.getText().toString(),
+                    RequestProperty.REGISTRATION_TYPE_CUSTOM, StringUtil.EMPTY);
+            signUpPresenter.signUp(signUpRequest);
             Util.hideKeyboard(this);
             progressBar.setVisibility(View.VISIBLE);
         }else{
@@ -168,22 +193,45 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
     }
 
     @Override
-    public void signUpResult() {
+    public void signUpSuccess() {
         progressBar.setVisibility(View.GONE);
-//        if (task.isSuccessful()) {
-//            Intent intent = new Intent(this, DashboardActivity.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(intent);
-//        } else {
-//            try {
-//                throw Objects.requireNonNull(task.getException());
-//            } catch (FirebaseAuthUserCollisionException existEmail) {
-//                setEmailErrorMessage(getResources().getString(R.string.email_exists));
-//            } catch (Exception e) {
-//                Snackbar.make(sign_up_rl, getString(R.string.problem_with_registration),Snackbar.LENGTH_LONG).show();
-//            }
-//        }
+        Intent intent = new Intent(this, DashboardActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void signUpFailed(String errorMessage) {
+        progressBar.setVisibility(View.GONE);
+        Snackbar.make(sign_up_rl, errorMessage,Snackbar.LENGTH_LONG).show();
+    }
+
+    @OnClick(R.id.google_sign_up_button)
+    public void googleLoginAction(){
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, Constants.GOOGLE_SIGN_UP_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == Constants.GOOGLE_SIGN_UP_REQUEST_CODE) {
+            try {
+                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+                GoogleSignInAccount googleSignInAccount = task.getResult(ApiException.class);
+                if (googleSignInAccount != null){
+                    SignUpRequest signUpRequest = new SignUpRequest(googleSignInAccount.getEmail(), StringUtil.EMPTY,
+                            googleSignInAccount.getDisplayName(),RequestProperty.REGISTRATION_TYPE_GOOGLE,googleSignInAccount.getId());
+                    signUpPresenter.signUp(signUpRequest);
+                }
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 
 }

@@ -1,7 +1,5 @@
 package com.asyncdroid.ads.mvp.view.iview;
 
-import com.asyncdroid.ads.mvp.model.LoginResponse;
-
 public interface LoginView extends BaseView {
     void emailValidated(boolean validationStatus);
 

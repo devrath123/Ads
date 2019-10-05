@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-38:12
+ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-47:12
 MERGED from [com.google.android.material:material:1.1.0-alpha10] /Users/A101664/.gradle/caches/transforms-2/files-2.1/5fa7e239db52598ec8ca32de7064969c/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/A101664/.gradle/caches/transforms-2/files-2.1/d9d0ad4266a6548f8e08469119464396/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/A101664/.gradle/caches/transforms-2/files-2.1/11741c413d816fb1db4c434a979e7b4b/AndroidManifest.xml:2:1-11:12
@@ -62,20 +62,20 @@ MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/A101664/.gradle/caches
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/A101664/.gradle/caches/transforms-2/files-2.1/316cd38d07f4c4b7da2886d922a9d567/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/A101664/.gradle/caches/transforms-2/files-2.1/32dcead418bd0f04456751c47fcdd387/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/A101664/.gradle/caches/transforms-2/files-2.1/e85c4cd17bf53e65353d733dd1a20c9a/AndroidManifest.xml:17:1-22:12
-INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-38:12
+INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-47:12
 	package
 		ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:3:5-33
 		INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml
-		ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-38:12
+		ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-47:12
 		INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml
-		ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-38:12
+		ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:1-47:12
 		INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:2:11-69
@@ -94,7 +94,7 @@ MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] /U
 	android:name
 		ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:7:5-36:19
+ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:7:5-45:19
 MERGED from [com.google.android.material:material:1.1.0-alpha10] /Users/A101664/.gradle/caches/transforms-2/files-2.1/5fa7e239db52598ec8ca32de7064969c/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.1.0-alpha10] /Users/A101664/.gradle/caches/transforms-2/files-2.1/5fa7e239db52598ec8ca32de7064969c/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/A101664/.gradle/caches/transforms-2/files-2.1/11741c413d816fb1db4c434a979e7b4b/AndroidManifest.xml:9:5-20
@@ -191,6 +191,20 @@ category#android.intent.category.LAUNCHER
 ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:33:17-77
 	android:name
 		ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:33:27-74
+meta-data#com.google.android.gms.version
+ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:37:9-39:69
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/A101664/.gradle/caches/transforms-2/files-2.1/a9e31c82d8a723d02a44d1ebd5ce6fe9/AndroidManifest.xml:23:9-25:69
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/A101664/.gradle/caches/transforms-2/files-2.1/a9e31c82d8a723d02a44d1ebd5ce6fe9/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:39:13-66
+	android:name
+		ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:38:13-58
+meta-data#com.google.android.geo.API_KEY
+ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:41:9-43:71
+	android:value
+		ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:43:13-68
+	android:name
+		ADDED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml:42:13-58
 uses-sdk
 INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/A101664/StudioProjects/Ads/Ads/app/src/main/AndroidManifest.xml
@@ -469,9 +483,3 @@ ADDED from [com.google.firebase:firebase-common:19.0.0] /Users/A101664/.gradle/c
 		ADDED from [com.google.firebase:firebase-common:19.0.0] /Users/A101664/.gradle/caches/transforms-2/files-2.1/bf290087f6330d41222068ce6771fef1/AndroidManifest.xml:16:13-36
 	android:name
 		ADDED from [com.google.firebase:firebase-common:19.0.0] /Users/A101664/.gradle/caches/transforms-2/files-2.1/bf290087f6330d41222068ce6771fef1/AndroidManifest.xml:13:13-77
-meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/A101664/.gradle/caches/transforms-2/files-2.1/a9e31c82d8a723d02a44d1ebd5ce6fe9/AndroidManifest.xml:23:9-25:69
-	android:value
-		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/A101664/.gradle/caches/transforms-2/files-2.1/a9e31c82d8a723d02a44d1ebd5ce6fe9/AndroidManifest.xml:25:13-66
-	android:name
-		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/A101664/.gradle/caches/transforms-2/files-2.1/a9e31c82d8a723d02a44d1ebd5ce6fe9/AndroidManifest.xml:24:13-58

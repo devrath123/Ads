@@ -14,5 +14,7 @@ public interface SignUpView extends BaseView {
 
     void setPasswordErrorMessage(String errorMessage);
 
-    void signUpResult();
+    void signUpSuccess();
+
+    void signUpFailed(String errorMessage);
 }

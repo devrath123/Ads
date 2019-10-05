@@ -4,7 +4,7 @@ package com.asyncdroid.ads.mvp.presenter;
 import androidx.annotation.NonNull;
 
 import com.asyncdroid.ads.manager.SharedPrefManager;
-import com.asyncdroid.ads.mvp.model.LoginResponse;
+import com.asyncdroid.ads.mvp.model.LoginSignUpResponse;
 import com.asyncdroid.ads.mvp.view.iview.LoginView;
 import com.asyncdroid.ads.util.APIInterface;
 import com.asyncdroid.ads.util.Constants;
@@ -39,24 +39,29 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         this.loginView = view;
     }
 
-    public void login(String email, String password) {
+    public void login(String email, String password, String socialUserId) {
 
         try {
             JsonObject loginJsonObject = new JsonObject();
             loginJsonObject.addProperty(RequestProperty.PROPERTY_EMAIL, email);
             loginJsonObject.addProperty(RequestProperty.PROPERTY_PASSWORD, password);
+            loginJsonObject.addProperty(RequestProperty.PROPERTY_SOCIAL_USER_ID, socialUserId);
 
             Call<JsonObject> loginCall = apiInterface.login(loginJsonObject);
 
             loginCall.enqueue(new Callback<JsonObject>() {
                 @Override
                 public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
-                    LoginResponse loginResponse = new Gson().fromJson(response.body(), LoginResponse.class);
-                    if (loginResponse.getStatusCode() == Constants.RESPONSE_CODE_SUCCESS) {
-                        updateLoginPreferences(loginResponse);
-                        loginView.loginSuccess();
+                    LoginSignUpResponse loginResponse = new Gson().fromJson(response.body(), LoginSignUpResponse.class);
+                    if (loginResponse != null) {
+                        if (loginResponse.getStatusCode() == Constants.RESPONSE_CODE_SUCCESS) {
+                            updateLoginPreferences(loginResponse);
+                            loginView.loginSuccess();
+                        } else {
+                            loginView.loginFailed(loginResponse.getMessage());
+                        }
                     } else {
-                        loginView.loginFailed(loginResponse.getMessage());
+                        loginView.loginFailed(StringUtil.SOMETHING_WENT_WRONG);
                     }
                 }
 
@@ -70,10 +75,12 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         }
     }
 
-    private void updateLoginPreferences(LoginResponse loginResponse) {
-        sharedPrefManager.putLong(SharedPrefConstants.USER_ID, loginResponse.getUser().getUserId());
-        sharedPrefManager.putString(SharedPrefConstants.USER_NAME, loginResponse.getUser().getName());
-        sharedPrefManager.putString(SharedPrefConstants.USER_EMAIL, loginResponse.getUser().getEmail());
+    private void updateLoginPreferences(LoginSignUpResponse loginResponse) {
+        if (loginResponse.getUser() != null) {
+            sharedPrefManager.putLong(SharedPrefConstants.USER_ID, loginResponse.getUser().getUserId());
+            sharedPrefManager.putString(SharedPrefConstants.USER_NAME, loginResponse.getUser().getName());
+            sharedPrefManager.putString(SharedPrefConstants.USER_EMAIL, loginResponse.getUser().getEmail());
+        }
     }
 
     public void checkEmailValidation(String email) {

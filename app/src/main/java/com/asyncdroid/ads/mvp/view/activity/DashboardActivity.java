@@ -115,9 +115,9 @@ public class DashboardActivity extends BaseActivity
     }
 
     @Override
-    public void setUserInfo() {
-//        user_name_tv.setText(firebaseUser.getDisplayName());
-//        user_email_tv.setText(firebaseUser.getEmail());
+    public void setUserInfo(String name, String email) {
+        user_name_tv.setText(name);
+        user_email_tv.setText(email);
     }
 
     @Override

@@ -1,14 +1,19 @@
 package com.asyncdroid.ads.mvp.presenter;
 
-import android.util.Log;
 
+import androidx.annotation.NonNull;
 
 import com.asyncdroid.ads.manager.SharedPrefManager;
+import com.asyncdroid.ads.mvp.model.LoginSignUpResponse;
+import com.asyncdroid.ads.mvp.model.SignUpRequest;
 import com.asyncdroid.ads.mvp.view.iview.SignUpView;
 import com.asyncdroid.ads.util.APIInterface;
+import com.asyncdroid.ads.util.Constants;
 import com.asyncdroid.ads.util.RequestProperty;
+import com.asyncdroid.ads.util.SharedPrefConstants;
 import com.asyncdroid.ads.util.StringUtil;
 import com.asyncdroid.ads.util.Validator;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import javax.inject.Inject;
@@ -63,27 +68,39 @@ public class SignUpPresenter extends BasePresenter<SignUpView> {
         }
     }
 
-    public void signUp(String email, String password, String displayName) {
-
+    public void signUp(SignUpRequest signUpRequest) {
         JsonObject signUpJsonObject = new JsonObject();
-        signUpJsonObject.addProperty(RequestProperty.PROPERTY_NAME, displayName);
-        signUpJsonObject.addProperty(RequestProperty.PROPERTY_EMAIL, email);
-        signUpJsonObject.addProperty(RequestProperty.PROPERTY_PASSWORD, password);
-        signUpJsonObject.addProperty(RequestProperty.PROPERTY_REGISTRATION_TYPE, RequestProperty.REGISTRATION_TYPE_CUSTOM);
+        signUpJsonObject.addProperty(RequestProperty.PROPERTY_NAME, signUpRequest.getDisplayName());
+        signUpJsonObject.addProperty(RequestProperty.PROPERTY_EMAIL, signUpRequest.getEmail());
+        signUpJsonObject.addProperty(RequestProperty.PROPERTY_PASSWORD, signUpRequest.getPassword());
+        signUpJsonObject.addProperty(RequestProperty.PROPERTY_REGISTRATION_TYPE, signUpRequest.getRegistrationType());
+        signUpJsonObject.addProperty(RequestProperty.PROPERTY_SOCIAL_USER_ID, signUpRequest.getSocialUserId());
 
         Call<JsonObject> signUpCall = apiInterface.signUp(signUpJsonObject);
         signUpCall.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                Log.i("Response", response.body().toString());
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
+                LoginSignUpResponse signUpResponse = new Gson().fromJson(response.body(), LoginSignUpResponse.class);
+                if (signUpResponse.getStatusCode() == Constants.RESPONSE_CODE_SUCCESS) {
+                    updateSignUpPreferences(signUpResponse);
+                    signUpView.signUpSuccess();
+                } else {
+                    signUpView.signUpFailed(signUpResponse.getMessage());
+                }
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.i("Response", "");
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
+                signUpView.signUpFailed(t.getMessage());
             }
         });
+    }
 
-
+    private void updateSignUpPreferences(LoginSignUpResponse signUpResponse) {
+        if (signUpResponse.getUser() != null) {
+            sharedPrefManager.putLong(SharedPrefConstants.USER_ID, signUpResponse.getUser().getUserId());
+            sharedPrefManager.putString(SharedPrefConstants.USER_NAME, signUpResponse.getUser().getName());
+            sharedPrefManager.putString(SharedPrefConstants.USER_EMAIL, signUpResponse.getUser().getEmail());
+        }
     }
 }

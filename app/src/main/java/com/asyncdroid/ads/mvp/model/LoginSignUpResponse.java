@@ -1,6 +1,6 @@
 package com.asyncdroid.ads.mvp.model;
 
-public class LoginResponse {
+public class LoginSignUpResponse {
 
     private int statusCode;
     private String message;
@@ -13,6 +13,7 @@ public class LoginResponse {
         private String password;
         private String registration_type;
         private String social_user_id;
+        private String profile_pic_url;
 
         public long getUserId() {
             return userId;
@@ -60,6 +61,14 @@ public class LoginResponse {
 
         public void setSocial_user_id(String social_user_id) {
             this.social_user_id = social_user_id;
+        }
+
+        public String getProfile_pic_url() {
+            return profile_pic_url;
+        }
+
+        public void setProfile_pic_url(String profile_pic_url) {
+            this.profile_pic_url = profile_pic_url;
         }
     }
 

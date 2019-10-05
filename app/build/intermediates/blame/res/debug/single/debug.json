@@ -216,6 +216,10 @@
         "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/5fa7e239db52598ec8ca32de7064969c/res/layout/mtrl_calendar_year.xml"
     },
     {
+        "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable_ic_facebook.xml.flat",
+        "source": "/Users/A101664/StudioProjects/Ads/Ads/app/src/main/res/drawable/ic_facebook.xml"
+    },
+    {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable_grey_border_elv.xml.flat",
         "source": "/Users/A101664/StudioProjects/Ads/Ads/app/src/main/res/drawable/grey_border_elv.xml"
     },
@@ -552,6 +556,10 @@
         "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/45139d774cb683de93662392a2b15120/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
     },
     {
+        "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_google.png.flat",
+        "source": "/Users/A101664/StudioProjects/Ads/Ads/app/build/generated/res/pngs/debug/drawable-mdpi/ic_google.png"
+    },
+    {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_scrubber_control_off_mtrl_alpha.png.flat",
         "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/d9d0ad4266a6548f8e08469119464396/res/drawable-hdpi-v4/abc_scrubber_control_off_mtrl_alpha.png"
     },
@@ -830,6 +838,10 @@
     {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/color_mtrl_tabs_ripple_color.xml.flat",
         "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/5fa7e239db52598ec8ca32de7064969c/res/color/mtrl_tabs_ripple_color.xml"
+    },
+    {
+        "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_google.png.flat",
+        "source": "/Users/A101664/StudioProjects/Ads/Ads/app/build/generated/res/pngs/debug/drawable-xhdpi/ic_google.png"
     },
     {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_ic_star_half_black_48dp.png.flat",
@@ -1368,6 +1380,10 @@
         "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/d9d0ad4266a6548f8e08469119464396/res/drawable-ldrtl-hdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
+        "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_google.png.flat",
+        "source": "/Users/A101664/StudioProjects/Ads/Ads/app/build/generated/res/pngs/debug/drawable-ldpi/ic_google.png"
+    },
+    {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
         "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/45139d774cb683de93662392a2b15120/res/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png"
     },
@@ -1492,12 +1508,20 @@
         "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/45139d774cb683de93662392a2b15120/res/drawable/notification_bg_low.xml"
     },
     {
+        "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_google.png.flat",
+        "source": "/Users/A101664/StudioProjects/Ads/Ads/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_google.png"
+    },
+    {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable_btn_checkbox_unchecked_to_checked_mtrl_animation.xml.flat",
         "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/d9d0ad4266a6548f8e08469119464396/res/drawable/btn_checkbox_unchecked_to_checked_mtrl_animation.xml"
     },
     {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
         "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/e782a6fe01b8e889396f11766e884c61/res/drawable-mdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_google.png.flat",
+        "source": "/Users/A101664/StudioProjects/Ads/Ads/app/build/generated/res/pngs/debug/drawable-xxxhdpi/ic_google.png"
     },
     {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/layout_abc_screen_simple.xml.flat",
@@ -1666,6 +1690,10 @@
     {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/layout_fragment_home.xml.flat",
         "source": "/Users/A101664/StudioProjects/Ads/Ads/app/src/main/res/layout/fragment_home.xml"
+    },
+    {
+        "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_google.png.flat",
+        "source": "/Users/A101664/StudioProjects/Ads/Ads/app/build/generated/res/pngs/debug/drawable-hdpi/ic_google.png"
     },
     {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/color_mtrl_popupmenu_overlay_color.xml.flat",
@@ -2404,6 +2432,10 @@
         "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/5fa7e239db52598ec8ca32de7064969c/res/layout/mtrl_alert_select_dialog_multichoice.xml"
     },
     {
+        "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable_blue_border_circle.xml.flat",
+        "source": "/Users/A101664/StudioProjects/Ads/Ads/app/src/main/res/drawable/blue_border_circle.xml"
+    },
+    {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/color_abc_primary_text_material_light.xml.flat",
         "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/d9d0ad4266a6548f8e08469119464396/res/color/abc_primary_text_material_light.xml"
     },
@@ -2630,6 +2662,10 @@
     {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_light_focused.xml.flat",
         "source": "/Users/A101664/.gradle/caches/transforms-2/files-2.1/e782a6fe01b8e889396f11766e884c61/res/drawable/common_google_signin_btn_text_light_focused.xml"
+    },
+    {
+        "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable-anydpi-v24_ic_google.xml.flat",
+        "source": "/Users/A101664/StudioProjects/Ads/Ads/app/build/generated/res/pngs/debug/drawable-anydpi-v24/ic_google.xml"
     },
     {
         "merged": "/Users/A101664/StudioProjects/Ads/Ads/app/build/intermediates/res/merged/debug/drawable-anydpi-v21_design_ic_visibility_off.xml.flat",

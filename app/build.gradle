@@ -40,6 +40,9 @@ dependencies {
     // Google Play Services
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
+    //Google Auth for Login
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
     // Dependency Injection
     implementation 'com.google.dagger:dagger:2.10'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.10'

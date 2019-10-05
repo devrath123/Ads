@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_15dp"
             android:background="@drawable/grey_border_et"
+            android:drawableEnd="@drawable/ic_menu_password_visibility"
             android:fontFamily="@font/roboto_regular"
             android:hint="@string/password"
             android:inputType="textPassword"
@@ -57,9 +58,7 @@
             android:maxLines="@integer/max_lines_1"
             android:padding="@dimen/dimen_15dp"
             android:textColor="@color/dark_gray"
-            android:textColorHint="@color/dark_gray"
-            android:drawableEnd="@drawable/ic_menu_password_visibility"
-            />
+            android:textColorHint="@color/dark_gray" />
 
         <TextView
             android:id="@+id/password_error_tv"
@@ -72,18 +71,57 @@
 
         <Button
             android:id="@+id/login_btn"
-            android:layout_width="@dimen/dimen_180dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dimen_40dp"
-            android:padding="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_30dp"
             android:background="@drawable/blue_background_btn"
             android:fontFamily="@font/roboto_medium"
+            android:padding="@dimen/dimen_10dp"
             android:text="@string/login"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"
             android:textSize="@dimen/dimen_18sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/dimen_5dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginEnd="@dimen/dimen_5dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/or"
+            android:textSize="@dimen/dimen_18sp"
+            android:textStyle="bold" />
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen_20dp">
+
+            <ImageButton
+                android:id="@+id/google_login_button"
+                android:layout_width="@dimen/dimen_60dp"
+                android:layout_height="@dimen/dimen_60dp"
+                android:background="@drawable/blue_border_circle"
+                android:src="@drawable/ic_google" />
+
+            <ImageButton
+                android:id="@+id/facebook_login_button"
+                android:layout_width="@dimen/dimen_60dp"
+                android:layout_height="@dimen/dimen_60dp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/dimen_20dp"
+                android:layout_toEndOf="@+id/google_login_button"
+                android:src="@drawable/ic_facebook"
+                android:background="@drawable/blue_border_circle" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -100,9 +138,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/new_to_ads"
+            android:text="@string/create_an_account"
             android:textColor="@color/dark_gray"
-            android:textSize="@dimen/dimen_16sp" />
+            android:textSize="@dimen/dimen_14sp" />
 
         <TextView
             android:id="@+id/register_tv"
@@ -112,7 +150,7 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/register"
             android:textColor="@color/dark_blue"
-            android:textSize="@dimen/dimen_16sp" />
+            android:textSize="@dimen/dimen_18sp" />
 
     </LinearLayout>
 

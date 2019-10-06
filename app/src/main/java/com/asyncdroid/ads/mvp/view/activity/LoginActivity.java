@@ -9,6 +9,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -130,6 +131,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @OnClick(R.id.login_btn)
     public void loginButtonAction() {
         if (emailValidationStatus && passwordValidationStatus) {
+//            AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+//            buttonClick.setBackgroundColor(getColor(R.color.white));
+//            login_btn.setAnimation(buttonClick);
             loginPresenter.login(email_et.getText().toString(), password_et.getText().toString(), StringUtil.EMPTY);
             Util.hideKeyboard(this);
             progress_bar.setVisibility(View.VISIBLE);

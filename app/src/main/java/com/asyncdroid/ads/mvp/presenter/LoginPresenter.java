@@ -12,6 +12,7 @@ import com.asyncdroid.ads.util.RequestProperty;
 import com.asyncdroid.ads.util.SharedPrefConstants;
 import com.asyncdroid.ads.util.StringUtil;
 import com.asyncdroid.ads.util.Validator;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -27,11 +28,14 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     private LoginView loginView;
     private SharedPrefManager sharedPrefManager;
     private APIInterface apiInterface;
+    private FirebaseAnalytics firebaseAnalytics;
 
     @Inject
-    LoginPresenter(SharedPrefManager sharedPrefManager, APIInterface apiInterface) {
+    LoginPresenter(SharedPrefManager sharedPrefManager, APIInterface apiInterface,
+                   FirebaseAnalytics firebaseAnalytics) {
         this.sharedPrefManager = sharedPrefManager;
         this.apiInterface = apiInterface;
+        this.firebaseAnalytics = firebaseAnalytics;
     }
 
     @Override
@@ -42,6 +46,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     public void login(String email, String password, String socialUserId) {
 
         try {
+            trackEvent(firebaseAnalytics, "Login Clicked");
             JsonObject loginJsonObject = new JsonObject();
             loginJsonObject.addProperty(RequestProperty.PROPERTY_EMAIL, email);
             loginJsonObject.addProperty(RequestProperty.PROPERTY_PASSWORD, password);

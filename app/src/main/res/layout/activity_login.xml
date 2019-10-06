@@ -81,7 +81,8 @@
             android:text="@string/login"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"
-            android:textSize="@dimen/dimen_18sp" />
+            android:textSize="@dimen/dimen_18sp"
+            android:foreground="?android:attr/selectableItemBackground"/>
 
 
         <TextView

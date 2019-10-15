@@ -6,13 +6,16 @@ public class SignUpRequest {
     private String displayName;
     private String registrationType;
     private String socialUserId;
+    private String photoUrl;
 
-    public SignUpRequest(String email, String password, String displayName, String registrationType, String socialUserId) {
+    public SignUpRequest(String email, String password, String displayName, String registrationType,
+                         String socialUserId, String photoUrl) {
         this.email = email;
         this.password = password;
         this.displayName = displayName;
         this.registrationType = registrationType;
         this.socialUserId = socialUserId;
+        this.photoUrl = photoUrl;
     }
 
     public String getEmail() {
@@ -53,5 +56,13 @@ public class SignUpRequest {
 
     public void setSocialUserId(String socialUserId) {
         this.socialUserId = socialUserId;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

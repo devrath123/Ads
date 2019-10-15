@@ -85,6 +85,7 @@ public class SignUpPresenter extends BasePresenter<SignUpView> {
         signUpJsonObject.addProperty(RequestProperty.PROPERTY_PASSWORD, signUpRequest.getPassword());
         signUpJsonObject.addProperty(RequestProperty.PROPERTY_REGISTRATION_TYPE, signUpRequest.getRegistrationType());
         signUpJsonObject.addProperty(RequestProperty.PROPERTY_SOCIAL_USER_ID, signUpRequest.getSocialUserId());
+        signUpJsonObject.addProperty(RequestProperty.PROPERTY_PROFILE_PIC_URL, signUpRequest.getPhotoUrl());
 
         Call<JsonObject> signUpCall = apiInterface.signUp(signUpJsonObject);
         signUpCall.enqueue(new Callback<JsonObject>() {
@@ -112,6 +113,7 @@ public class SignUpPresenter extends BasePresenter<SignUpView> {
             sharedPrefManager.putString(SharedPrefConstants.USER_NAME, signUpResponse.getUser().getName());
             sharedPrefManager.putString(SharedPrefConstants.USER_EMAIL, signUpResponse.getUser().getEmail());
             sharedPrefManager.putString(SharedPrefConstants.USER_REGISTRATION_TYPE, signUpResponse.getUser().getRegistration_type());
+            sharedPrefManager.putString(SharedPrefConstants.USER_PHOTO_URL, signUpResponse.getUser().getProfile_pic_url());
         }
     }
 }

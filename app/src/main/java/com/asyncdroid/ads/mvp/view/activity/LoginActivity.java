@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -20,6 +18,7 @@ import androidx.annotation.Nullable;
 
 import com.asyncdroid.ads.R;
 import com.asyncdroid.ads.di.AppDI;
+import com.asyncdroid.ads.mvp.model.LoginRequest;
 import com.asyncdroid.ads.mvp.presenter.LoginPresenter;
 import com.asyncdroid.ads.mvp.view.iview.LoginView;
 import com.asyncdroid.ads.util.Constants;
@@ -131,10 +130,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @OnClick(R.id.login_btn)
     public void loginButtonAction() {
         if (emailValidationStatus && passwordValidationStatus) {
-//            AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
-//            buttonClick.setBackgroundColor(getColor(R.color.white));
-//            login_btn.setAnimation(buttonClick);
-            loginPresenter.login(email_et.getText().toString(), password_et.getText().toString(), StringUtil.EMPTY);
+            loginPresenter.login(new LoginRequest(email_et.getText().toString(), password_et.getText().toString(), StringUtil.EMPTY));
             Util.hideKeyboard(this);
             progress_bar.setVisibility(View.VISIBLE);
         } else {
@@ -212,7 +208,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                 GoogleSignInAccount googleSignInAccount = task.getResult(ApiException.class);
                 if (googleSignInAccount != null) {
-                    loginPresenter.login(googleSignInAccount.getEmail(), StringUtil.EMPTY, googleSignInAccount.getId());
+                    loginPresenter.login(new LoginRequest(googleSignInAccount.getEmail(), StringUtil.EMPTY, googleSignInAccount.getId()));
                 }
 
             } catch (Exception e) {

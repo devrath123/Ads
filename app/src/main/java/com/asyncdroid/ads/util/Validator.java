@@ -6,7 +6,7 @@ import android.util.Patterns;
 public class Validator {
 
     public static boolean displayNameValidation(String displayName){
-        return displayName.length() > Constants.DISPLAY_NAME_MIN_LENGTH;
+        return displayName.length() > Constants.NAME_MIN_LENGTH;
     }
 
     public static boolean emailValidation(String email){

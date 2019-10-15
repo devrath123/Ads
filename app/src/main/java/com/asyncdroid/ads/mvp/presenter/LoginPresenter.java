@@ -4,6 +4,7 @@ package com.asyncdroid.ads.mvp.presenter;
 import androidx.annotation.NonNull;
 
 import com.asyncdroid.ads.manager.SharedPrefManager;
+import com.asyncdroid.ads.mvp.model.LoginRequest;
 import com.asyncdroid.ads.mvp.model.LoginSignUpResponse;
 import com.asyncdroid.ads.mvp.view.iview.LoginView;
 import com.asyncdroid.ads.util.APIInterface;
@@ -43,14 +44,14 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         this.loginView = view;
     }
 
-    public void login(String email, String password, String socialUserId) {
+    public void login(LoginRequest loginRequest) {
 
         try {
             trackEvent(firebaseAnalytics, "Login Clicked");
             JsonObject loginJsonObject = new JsonObject();
-            loginJsonObject.addProperty(RequestProperty.PROPERTY_EMAIL, email);
-            loginJsonObject.addProperty(RequestProperty.PROPERTY_PASSWORD, password);
-            loginJsonObject.addProperty(RequestProperty.PROPERTY_SOCIAL_USER_ID, socialUserId);
+            loginJsonObject.addProperty(RequestProperty.PROPERTY_EMAIL, loginRequest.getEmail());
+            loginJsonObject.addProperty(RequestProperty.PROPERTY_PASSWORD, loginRequest.getPassword());
+            loginJsonObject.addProperty(RequestProperty.PROPERTY_SOCIAL_USER_ID, loginRequest.getSocialUserId());
 
             Call<JsonObject> loginCall = apiInterface.login(loginJsonObject);
 
@@ -86,6 +87,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             sharedPrefManager.putString(SharedPrefConstants.USER_NAME, loginResponse.getUser().getName());
             sharedPrefManager.putString(SharedPrefConstants.USER_EMAIL, loginResponse.getUser().getEmail());
             sharedPrefManager.putString(SharedPrefConstants.USER_REGISTRATION_TYPE, loginResponse.getUser().getRegistration_type());
+            sharedPrefManager.putString(SharedPrefConstants.USER_PHOTO_URL, loginResponse.getUser().getProfile_pic_url());
         }
     }
 

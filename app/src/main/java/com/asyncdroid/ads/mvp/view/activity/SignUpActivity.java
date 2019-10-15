@@ -35,6 +35,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 
 
+import java.util.Objects;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -80,6 +82,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
     private boolean passwordVisible;
 
     private GoogleSignInClient googleSignInClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +121,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
         });
     }
 
-    private void googleSignIn(){
+    private void googleSignIn() {
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -151,11 +154,11 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
         if (nameValidationStatus && emailValidationStatus && passwordValidationStatus) {
             SignUpRequest signUpRequest = new SignUpRequest(email_et.getText().toString(),
                     password_et.getText().toString(), name_et.getText().toString(),
-                    RequestProperty.REGISTRATION_TYPE_CUSTOM, StringUtil.EMPTY);
+                    RequestProperty.REGISTRATION_TYPE_CUSTOM, StringUtil.EMPTY, StringUtil.EMPTY);
             signUpPresenter.signUp(signUpRequest);
             Util.hideKeyboard(this);
             progressBar.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             signUpPresenter.checkNameValidation(name_et.getText().toString());
             signUpPresenter.checkEmailValidation(email_et.getText().toString());
             signUpPresenter.checkPasswordValidation(password_et.getText().toString());
@@ -202,7 +205,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
     }
 
     @OnClick(R.id.login_tv)
-    public void loginAction(){
+    public void loginAction() {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -212,11 +215,11 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
     @Override
     public void signUpFailed(String errorMessage) {
         progressBar.setVisibility(View.GONE);
-        Snackbar.make(sign_up_rl, errorMessage,Snackbar.LENGTH_LONG).show();
+        Snackbar.make(sign_up_rl, errorMessage, Snackbar.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.google_sign_up_button)
-    public void googleLoginAction(){
+    public void googleLoginAction() {
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, Constants.GOOGLE_SIGN_UP_REQUEST_CODE);
     }
@@ -229,13 +232,13 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
             try {
                 Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                 GoogleSignInAccount googleSignInAccount = task.getResult(ApiException.class);
-                if (googleSignInAccount != null){
-                    SignUpRequest signUpRequest = new SignUpRequest(googleSignInAccount.getEmail(), StringUtil.EMPTY,
-                            googleSignInAccount.getDisplayName(),RequestProperty.REGISTRATION_TYPE_GOOGLE,googleSignInAccount.getId());
-                    signUpPresenter.signUp(signUpRequest);
+                if (googleSignInAccount != null) {
+                    signUpPresenter.signUp(new SignUpRequest(googleSignInAccount.getEmail(), StringUtil.EMPTY,
+                            googleSignInAccount.getDisplayName(), RequestProperty.REGISTRATION_TYPE_GOOGLE,
+                            googleSignInAccount.getId(), Objects.requireNonNull(googleSignInAccount.getPhotoUrl()).getPath()));
                 }
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

@@ -77,12 +77,12 @@
             android:layout_marginTop="@dimen/dimen_30dp"
             android:background="@drawable/blue_background_btn"
             android:fontFamily="@font/roboto_medium"
+            android:foreground="?android:attr/selectableItemBackground"
             android:padding="@dimen/dimen_10dp"
             android:text="@string/login"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"
-            android:textSize="@dimen/dimen_18sp"
-            android:foreground="?android:attr/selectableItemBackground"/>
+            android:textSize="@dimen/dimen_18sp" />
 
 
         <TextView
@@ -96,7 +96,6 @@
             android:text="@string/or"
             android:textSize="@dimen/dimen_18sp"
             android:textStyle="bold" />
-
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -118,8 +117,8 @@
                 android:layout_centerInParent="true"
                 android:layout_marginStart="@dimen/dimen_20dp"
                 android:layout_toEndOf="@+id/google_login_button"
-                android:src="@drawable/ic_facebook"
-                android:background="@drawable/blue_border_circle" />
+                android:background="@drawable/blue_border_circle"
+                android:src="@drawable/ic_facebook" />
 
         </RelativeLayout>
 

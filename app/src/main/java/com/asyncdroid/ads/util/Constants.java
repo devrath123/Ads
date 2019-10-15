@@ -6,7 +6,7 @@ public interface Constants {
 
     int SPLASH_TIMER = 2000;
     int PASSWORD_MIN_LENGTH = 5;
-    int DISPLAY_NAME_MIN_LENGTH = 2;
+    int NAME_MIN_LENGTH = 2;
 
     //Intent Request Codes
     int GOOGLE_LOGIN_REQUEST_CODE = 120;

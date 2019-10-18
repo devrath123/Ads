@@ -105,7 +105,8 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="@dimen/dimen_18sp"
-            android:fontFamily="@font/roboto_medium"/>
+            android:fontFamily="@font/roboto_medium"
+            android:foreground="?android:attr/selectableItemBackground"/>
 
         <TextView
             android:layout_width="wrap_content"

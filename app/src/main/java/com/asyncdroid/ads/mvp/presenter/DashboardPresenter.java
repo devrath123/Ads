@@ -22,7 +22,7 @@ public class DashboardPresenter extends BasePresenter<DashboardView> {
         this.dashboardView = view;
     }
 
-    public void getLoggedInUserDetails() {
+    public void getUserDetails() {
         dashboardView.setUserInfo(sharedPrefManager.getString(SharedPrefConstants.USER_NAME),
                 sharedPrefManager.getString(SharedPrefConstants.USER_EMAIL));
     }

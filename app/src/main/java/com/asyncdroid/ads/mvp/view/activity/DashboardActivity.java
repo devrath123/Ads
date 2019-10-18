@@ -81,7 +81,7 @@ public class DashboardActivity extends BaseActivity
         setHeaderViewAndListener();
 
         dashboardPresenter.bind(this);
-        dashboardPresenter.getLoggedInUserDetails();
+        dashboardPresenter.getUserDetails();
 
     }
 

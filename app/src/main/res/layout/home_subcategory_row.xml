@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="ltr"
-    android:background="@color/lighter_gray">
+    android:background="@color/lighter_gray"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/subcategory_tv"

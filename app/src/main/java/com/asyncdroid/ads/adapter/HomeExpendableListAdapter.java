@@ -73,6 +73,12 @@ public class HomeExpendableListAdapter extends BaseExpandableListAdapter {
         TextView headerTextView = view.findViewById(R.id.category_tv);
         headerTextView.setText(homeCategoryModel.getCategoryName());
 
+        if (b){
+            headerTextView.setTextColor(context.getResources().getColor(R.color.black));
+        }else{
+            headerTextView.setTextColor(context.getResources().getColor(R.color.dark_gray));
+        }
+
         ImageView headerImageView = view.findViewById(R.id.category_iv);
         headerImageView.setImageResource(homeCategoryModel.getCategoryImage());
 

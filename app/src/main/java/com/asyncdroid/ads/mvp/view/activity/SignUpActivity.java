@@ -224,6 +224,11 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
         startActivityForResult(signInIntent, Constants.GOOGLE_SIGN_UP_REQUEST_CODE);
     }
 
+    @OnClick(R.id.facebook_sign_up_button)
+    public void facebookLoginAction(){
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

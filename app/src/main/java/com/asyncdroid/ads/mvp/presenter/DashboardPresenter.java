@@ -36,5 +36,6 @@ public class DashboardPresenter extends BasePresenter<DashboardView> {
         sharedPrefManager.putLong(SharedPrefConstants.USER_ID, 0);
         sharedPrefManager.putString(SharedPrefConstants.USER_NAME, StringUtil.EMPTY);
         sharedPrefManager.putString(SharedPrefConstants.USER_EMAIL, StringUtil.EMPTY);
+        sharedPrefManager.putString(SharedPrefConstants.USER_REGISTRATION_TYPE, StringUtil.EMPTY);
     }
 }

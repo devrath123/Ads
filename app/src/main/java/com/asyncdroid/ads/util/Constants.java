@@ -10,9 +10,6 @@ public interface Constants {
 
     //Intent Request Codes
     int GOOGLE_LOGIN_REQUEST_CODE = 120;
-    int FACEBOOK_LOGIN_REQUEST_CODE = 121;
-
     int GOOGLE_SIGN_UP_REQUEST_CODE = 130;
-    int FACEBOOK_SIGN_UP_REQUEST_CODE = 131;
 
 }

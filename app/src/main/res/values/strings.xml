@@ -1,4 +1,8 @@
 <resources>
+
+    <string name="facebook_app_id">373309120215242</string>
+    <string name="fb_login_protocol_scheme">fb373309120215242</string>
+
     <string name="app_name">Ads</string>
     <string name="email_id">Email Id</string>
     <string name="password">Password</string>

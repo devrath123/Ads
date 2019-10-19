@@ -2,6 +2,7 @@ package com.asyncdroid.ads;
 
 import android.app.Application;
 
+import com.facebook.FacebookSdk;
 import com.google.firebase.FirebaseApp;
 
 public class AdsApplication extends Application {
@@ -14,5 +15,6 @@ public class AdsApplication extends Application {
 
     private void initializeLibraries(){
         FirebaseApp.initializeApp(this);
+        FacebookSdk.sdkInitialize(getApplicationContext());
     }
 }

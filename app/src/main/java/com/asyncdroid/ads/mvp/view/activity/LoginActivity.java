@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -19,11 +20,21 @@ import androidx.annotation.Nullable;
 import com.asyncdroid.ads.R;
 import com.asyncdroid.ads.di.AppDI;
 import com.asyncdroid.ads.mvp.model.LoginRequest;
+import com.asyncdroid.ads.mvp.model.SignUpRequest;
 import com.asyncdroid.ads.mvp.presenter.LoginPresenter;
 import com.asyncdroid.ads.mvp.view.iview.LoginView;
 import com.asyncdroid.ads.util.Constants;
+import com.asyncdroid.ads.util.RequestProperty;
 import com.asyncdroid.ads.util.StringUtil;
 import com.asyncdroid.ads.util.Util;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -31,6 +42,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONObject;
+
+import java.util.Arrays;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -73,6 +89,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     boolean passwordVisible;
 
     private GoogleSignInClient googleSignInClient;
+    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +100,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
         loginPresenter.bind(this);
 
         setPasswordEyeListener();
-        googleSignIn();
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -190,17 +206,62 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @OnClick(R.id.google_login_button)
     public void googleLoginAction() {
+        googleSignIn();
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, Constants.GOOGLE_LOGIN_REQUEST_CODE);
     }
 
     @OnClick(R.id.facebook_login_button)
     public void facebookLoginAction() {
+        callbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                if (loginResult.getAccessToken() != null) {
+                    getFacebookUserInfo(loginResult.getAccessToken());
+                }
+            }
 
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.i("Exception", Objects.requireNonNull(error.getMessage()));
+            }
+        });
+    }
+
+    private void getFacebookUserInfo(AccessToken accessToken) {
+        GraphRequest graphRequest = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject object, GraphResponse response) {
+                try {
+                    String email = object.getString("email");
+                    String userId = object.getString("id");
+                    loginPresenter.login(new LoginRequest(email, StringUtil.EMPTY, userId));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Bundle bundle = new Bundle();
+        bundle.putString("fields", "id,name,email,picture.width(200)");
+        graphRequest.setParameters(bundle);
+        graphRequest.executeAsync();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if (callbackManager != null && requestCode != Constants.GOOGLE_LOGIN_REQUEST_CODE){
+            callbackManager.onActivityResult(requestCode,resultCode,data);
+        }
+
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == Constants.GOOGLE_LOGIN_REQUEST_CODE) {

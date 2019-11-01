@@ -7,7 +7,6 @@ import com.asyncdroid.ads.mvp.view.activity.BaseActivity;
 import com.asyncdroid.ads.mvp.view.fragment.HomeFragment;
 import com.asyncdroid.ads.mvp.view.fragment.MessagesFragment;
 import com.asyncdroid.ads.mvp.view.fragment.MyAdsFragment;
-import com.asyncdroid.ads.mvp.view.fragment.PostAdFragment;
 
 import dagger.Module;
 import dagger.Provides;
@@ -39,11 +38,6 @@ public class ActivityModule {
     @Provides
     MyAdsFragment providesMyAdsFragment(){
         return new MyAdsFragment();
-    }
-
-    @Provides
-    PostAdFragment providesPostAdFragment(){
-        return new PostAdFragment();
     }
 
     @Provides

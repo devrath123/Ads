@@ -15,8 +15,11 @@ import com.asyncdroid.ads.mvp.presenter.DashboardPresenter;
 import com.asyncdroid.ads.mvp.view.fragment.HomeFragment;
 import com.asyncdroid.ads.mvp.view.fragment.MessagesFragment;
 import com.asyncdroid.ads.mvp.view.fragment.MyAdsFragment;
-import com.asyncdroid.ads.mvp.view.fragment.PostAdFragment;
 import com.asyncdroid.ads.mvp.view.iview.DashboardView;
+import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -44,6 +47,9 @@ public class DashboardActivity extends BaseActivity
     @BindView(R.id.toggle_iv)
     ImageView toggle_iv;
 
+    @BindView(R.id.title_tv)
+    TextView title_tv;
+
     @BindView(R.id.drawer_navigation_menu)
     NavigationView drawer_navigation_menu;
 
@@ -55,9 +61,6 @@ public class DashboardActivity extends BaseActivity
 
     @Inject
     HomeFragment homeFragment;
-
-    @Inject
-    PostAdFragment postAdFragment;
 
     @Inject
     MyAdsFragment myAdsFragment;
@@ -84,6 +87,12 @@ public class DashboardActivity extends BaseActivity
         dashboardPresenter.getUserDetails();
 
     }
+
+    @OnClick(R.id.fab)
+    public void fabAction(){
+         startActivity(new Intent(this, PostAdActivity.class));
+    }
+
 
     private void setHeaderViewAndListener() {
         View headerView = drawer_navigation_menu.getHeaderView(0);
@@ -129,6 +138,20 @@ public class DashboardActivity extends BaseActivity
     }
 
     @Override
+    public void googleLogout() {
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+        googleSignInClient.signOut();
+    }
+
+    @Override
+    public void facebookLogout() {
+        LoginManager.getInstance().logOut();
+    }
+
+    @Override
     public void onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START);
@@ -146,10 +169,10 @@ public class DashboardActivity extends BaseActivity
                 homeNavigation();
                 break;
 
-            case R.id.nav_post_ad:
-                bottom_navigation_menu.setSelectedItemId(R.id.bottom_menu_post_ad);
-                postAdNavigation();
-                break;
+//            case R.id.nav_post_ad:
+//               // bottom_navigation_menu.setSelectedItemId(R.id.bottom_menu_post_ad);
+//                postAdNavigation();
+//                break;
 
             case R.id.nav_my_ads:
                 bottom_navigation_menu.setSelectedItemId(R.id.bottom_menu_my_ads);
@@ -176,10 +199,10 @@ public class DashboardActivity extends BaseActivity
                 homeNavigation();
                 break;
 
-            case R.id.bottom_menu_post_ad:
-                drawer_navigation_menu.setCheckedItem(R.id.nav_post_ad);
-                postAdNavigation();
-                break;
+//            case R.id.bottom_menu_post_ad:
+//                drawer_navigation_menu.setCheckedItem(R.id.nav_post_ad);
+//                postAdNavigation();
+//                break;
 
             case R.id.bottom_menu_my_ads:
                 drawer_navigation_menu.setCheckedItem(R.id.nav_my_ads);
@@ -197,18 +220,17 @@ public class DashboardActivity extends BaseActivity
     }
 
     private void homeNavigation() {
-        replaceFragment(R.id.frame_layout, homeFragment);
-    }
-
-    private void postAdNavigation() {
-        replaceFragment(R.id.frame_layout, postAdFragment);
+        title_tv.setText(getString(R.string.app_name));
+        replaceFragment(homeFragment);
     }
 
     private void myAdsNavigation() {
-        replaceFragment(R.id.frame_layout, myAdsFragment);
+        title_tv.setText(getString(R.string.menu_my_ads));
+        replaceFragment(myAdsFragment);
     }
 
     private void messagesNavigation() {
-        replaceFragment(R.id.frame_layout, messagesFragment);
+        title_tv.setText(getString(R.string.menu_messages));
+        replaceFragment(messagesFragment);
     }
 }

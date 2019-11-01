@@ -4,10 +4,10 @@
         android:id="@+id/bottom_menu_home"
         android:icon="@drawable/ic_menu_home"
         android:title="@string/menu_home" />
-    <item
-        android:id="@+id/bottom_menu_post_ad"
-        android:icon="@drawable/ic_menu_post_ad"
-        android:title="@string/menu_post_ad" />
+<!--    <item-->
+<!--        android:id="@+id/bottom_menu_post_ad"-->
+<!--        android:icon="@drawable/ic_menu_post_ad"-->
+<!--        android:title="@string/menu_post_ad" />-->
     <item
         android:id="@+id/bottom_menu_my_ads"
         android:icon="@drawable/ic_menu_my_ads"

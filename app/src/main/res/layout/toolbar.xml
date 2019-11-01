@@ -20,6 +20,7 @@
             android:visibility="gone"/>
 
         <TextView
+            android:id="@+id/title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -27,7 +28,7 @@
             android:paddingBottom="@dimen/dimen_10dp"
             android:text="@string/app_name"
             android:textColor="@color/white"
-            android:textSize="@dimen/dimen_25sp"
+            android:textSize="@dimen/dimen_22sp"
             android:fontFamily="@font/roboto_medium"
             android:layout_centerInParent="true"
             />

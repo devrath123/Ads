@@ -28,10 +28,18 @@ public abstract class BaseActivity extends AppCompatActivity {
         this.getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
     }
 
-    public void replaceFragment(int layoutId, Fragment fragment){
+    protected void replaceFragment(Fragment fragment){
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(layoutId, fragment)
+                .replace(R.id.frame_layout, fragment)
                 .commit();
     }
+
+    protected void addFragment(int layoutId, Fragment fragment){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(layoutId, fragment)
+                .commit();
+    }
+
 }

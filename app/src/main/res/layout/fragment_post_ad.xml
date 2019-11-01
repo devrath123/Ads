@@ -5,11 +5,35 @@
     android:layout_height="match_parent"
     tools:context=".mvp.view.fragment.PostAdFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Post Ad "
-        android:layout_alignParentBottom="true"/>
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Post Free Ad"
+        android:padding="@dimen/dimen_15dp"
+        android:gravity="center"
+        android:background="@color/dark_blue"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="@dimen/dimen_15sp"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Post Premium Ad"
+        android:padding="@dimen/dimen_15dp"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:background="@color/dark_blue"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="@dimen/dimen_15sp"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
